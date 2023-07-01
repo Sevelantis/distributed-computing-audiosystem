@@ -1,6 +1,6 @@
-*.py linguist-language=Python
-*.py linguist-language=python
-*.py linguist-language=PYTHON
+*.html linguist-language=Python
+*.html linguist-language=python
+*.html linguist-language=PYTHON
 
 src/* linguist-detectable
 tests/* linguist-detectable
