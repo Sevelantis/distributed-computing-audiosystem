@@ -1,0 +1,40 @@
+version: '3.9'
+
+services:
+
+# INFRASTRUCTURE
+
+  # activemq:
+  #   image: rmohr/activemq:5.15.9
+  #   container_name: activemq
+  #   ports:
+  #     - "8161:8161"
+  #     - "61616:61616"
+  #     - "61613:61613"
+  #   environment:
+  #     ACTIVEMQ_ADMIN_LOGIN: admin
+  #     ACTIVEMQ_ADMIN_PASSWORD: admin
+  #     ACTIVEMQ_OPTS: "-Xms2g -Xmx10g" # -Dorg.apache.activemq.transport.stomp.maxDataLength=10485760 
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         cpus: '0.95' #set the memory and CPU time based on requirement
+  #         memory: 10g
+  #       reservations:
+  #         cpus: '0.25'
+  #         memory: 2g
+
+  rabbitmq:
+    image: arm64v8/rabbitmq:management
+    container_name: follow_the_white_rabbit
+    ports:
+      - 61613:61613  # stomp
+      - 7777:15672   # web ui
+      # - 5672:5672 # amqp
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+    volumes:
+      - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+    command: >
+      sh -c "rabbitmq-plugins enable rabbitmq_stomp && exec rabbitmq-server"
