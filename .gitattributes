@@ -4,3 +4,5 @@
 
 src/* linguist-detectable
 tests/* linguist-detectable
+src/*/* linguist-detectable
+tests/*/* linguist-detectable
