@@ -1,1 +1,1 @@
-*.html linguist-vendored=false
+templates/*.html linguist-vendored=false
